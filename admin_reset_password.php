@@ -82,11 +82,11 @@ if ($_SERVER['REMOTE_ADDR'] == $ip) {
 
 	require "sd-system/config.php";
 
-	if ($_GET['reset'] == '1' && ! empty($username) && ! empty($password)) {
+	if (! empty($username) && ! empty($newPassword)) {
 
 		$admin_pass_salt = $db->generate_salt();
 
-		$admin_pass_encoded = $db->encode_password($_GET['password'], $admin_pass_salt);
+		$admin_pass_encoded = $db->encode_password($newPassword, $admin_pass_salt);
 
 		$in = $db->update("
 			UPDATE
